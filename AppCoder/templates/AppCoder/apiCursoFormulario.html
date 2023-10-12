@@ -1,0 +1,18 @@
+{% extends 'AppCoder/base.html' %}
+
+{% load static %}
+<title>{% block title %} Formulario - Agregar Comisión {% endblock title %}</title>
+
+{% block main %}
+{% if miFormulario.errors %}
+<p style="color:red;"> Están mal los datos, revisar </p>
+{% endif %}
+<form action="/apicursoForm" method="POST">
+    {% csrf_token %}
+
+    <p> Nombre: <input type = "text" name="nombre">
+    <p> Comisión: <input type = "text" name="comision">
+    
+    <input type = "submit" value="Enviar">
+</form>
+{% endblock main %}
