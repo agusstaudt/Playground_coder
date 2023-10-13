@@ -1,0 +1,10 @@
+{% extends 'AppCoder/base.html' %}
+{% load static %}
+<title>{% block title %} Buscar {% endblock title %}</title>
+
+{% block main %}
+{% for curso in cursos%}
+<p>Curso:{{curso.nombre}}</p>
+<p>Camada:{{curso.camada}}</p>
+{% endfor %}
+{% endblock main %}

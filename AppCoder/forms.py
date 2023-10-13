@@ -7,3 +7,6 @@ class CursoFormulario(forms.Form):
 class ApiCursoFormulario(forms.Form):
     nombre = forms.CharField()
     comision = forms.IntegerField()
+
+class BuscaCursoForm(forms.Form):
+    curso = forms.CharField()

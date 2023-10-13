@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from AppCoder.models import Curso, ApiCurso
-from AppCoder.forms import CursoFormulario
+from AppCoder.forms import CursoFormulario, BuscaCursoForm
 
 def inicio(request):
     return render(request, "AppCoder/inicio.html")
@@ -39,3 +39,20 @@ def apiCursoFormulario(request):
         curso.save()
         return render(request, "AppCoder/inicio.html")
     return render(request,"AppCoder/apiCursoFormulario.html")
+
+def buscar(request):
+    if request.method == "POST":
+        miFormulario = BuscaCursoForm(request.POST) # Aqui me llega la informacion del html
+        print(miFormulario)
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
+
+            cursos = Curso.objects.filter(nombre__icontains=informacion['curso'])
+
+            return render(request, "AppCoder/lista.html", {'cursos':cursos}) 
+    else:
+        miFormulario = BuscaCursoForm()
+    return render(request, "AppCoder/cursoFormulario.html", {"miFormulario": miFormulario})
+
+def mostrar(request):
+    pass
